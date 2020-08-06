@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="TestVpn.UI.ServerSelect.ServerSelectView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:ServerSelect="clr-namespace:TestVpn.UI.ServerSelect"
+			 xmlns:Providers="clr-namespace:TestVpn.Providers;assembly=TestVpn.Providers"
+			 mc:Ignorable="d"
+			 d:DataContext="{d:DesignInstance ServerSelect:ServerSelectViewModel}">
+
+	<UserControl.Resources>
+		<ServerSelect:ByteArrayToImageConverter x:Key="ImageConverter"/>
+	</UserControl.Resources>
+	
+	<ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding Providers}">
+		<ItemsControl.ItemTemplate>
+			<DataTemplate DataType="{x:Type Providers:Provider}">
+				<Button Command="{Binding DataContext.SelectProviderCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" SharedSizeGroup="ProviderFlag"/>
+							<ColumnDefinition Width="Auto" MinWidth="200" SharedSizeGroup="ProviderName"/>
+						</Grid.ColumnDefinitions>
+						
+						<Image Source="{Binding Data, Converter={StaticResource ImageConverter}}" Width="50" Height="50">
+							<Image.Clip>
+								<EllipseGeometry RadiusX="25" RadiusY="25" Center="25,25"/>
+							</Image.Clip>
+						</Image>
+
+						<TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="14"/>
+					</Grid>
+				</Button>
+			</DataTemplate>
+		</ItemsControl.ItemTemplate>
+	</ItemsControl>
+</UserControl>
