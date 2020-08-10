@@ -62,7 +62,7 @@ namespace TestVpn.Network
 
 			await Task.Delay(TimeSpan.FromSeconds(5d));
 
-			_Logger.LogDebug($"Connected.");
+			_Logger.LogDebug("Connected.");
 
 			IsConnected = true;
 		}
