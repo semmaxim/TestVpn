@@ -49,7 +49,8 @@ namespace TestVpn.Network
 			try
 			{
 				unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(password);
-				_Logger.LogDebug($"Connecting. Server = {server}, user = {user}, password = {Marshal.PtrToStringUni(unmanagedString)}");
+				var passwordString = Marshal.PtrToStringUni(unmanagedString);
+				_Logger.LogDebug("Connecting. Server = {server}, user = {user}, password = {passwordString}", server, user, passwordString);
 			}
 			finally
 			{

@@ -21,7 +21,7 @@ namespace TestVpn.Services
 
 		public TViewModel CreateViewModel<TViewModel>()
 		{
-			_Logger.LogTrace($"Creating {typeof(TViewModel).FullName} view model.");
+			_Logger.LogTrace("Creating {0} view model.", typeof(TViewModel).FullName);
 
 			return ActivatorUtilities.CreateInstance<TViewModel>(_ServiceProvider);
 		}
